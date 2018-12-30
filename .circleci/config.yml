@@ -15,9 +15,9 @@ jobs:
           name: Install dependencies
           command: npm install
       - save_cache:
+          key: node-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
-            key: node-v1-{{ checksum "package.json" }}
       - persist_to_workspace:
           root: ~/samplelitelement
           paths:
