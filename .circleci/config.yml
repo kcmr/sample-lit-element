@@ -9,5 +9,5 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
-          name: Build publish directory
+          name: Build demo
           command: npm run build

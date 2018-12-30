@@ -7,7 +7,8 @@
     "@polymer/lit-element": "latest"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "latest"
+    "@webcomponents/webcomponentsjs": "latest",
+    "polymer-cli": "^1.9.4"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,6 @@
   },
   "homepage": "https://github.com/kcmr/sample-lit-element/",
   "scripts": {
-    "build": "cp sample-lit-element.js publish/sample-lit-element.js && cd publish && npm i && npm run build"
+    "build": "./node_modules/.bin/polymer build"
   }
 }
