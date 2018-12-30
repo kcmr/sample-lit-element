@@ -1,12 +1,12 @@
 #!/bin/sh
-if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  git config --global user.email $GH_EMAIL
-  git config --global user.name $GH_NAME
+if [ "${CIRCLE_BRANCH}" == "${SOURCE_BRANCH}" ]; then
+  git config --global user.email "${GH_EMAIL}"
+  git config --global user.name "${GH_NAME}"
 
-  git clone $CIRCLE_REPOSITORY_URL out
+  git clone "${CIRCLE_REPOSITORY_URL}" out
 
   cd out
-  git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+  git checkout "${TARGET_BRANCH}" || git checkout --orphan "${TARGET_BRANCH}"
   git rm -rf .
   cd ..
 
@@ -18,5 +18,5 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
 
   git add -A
   git commit -m '[ci skip] deploy to Github Pages' --allow-empty
-  git push origin $TARGET_BRANCH
+  git push origin "${TARGET_BRANCH}"
 fi
