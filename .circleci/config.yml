@@ -27,6 +27,9 @@ jobs:
       - run:
           name: Test
           command: npm test
+      - run:
+          name: Upload coverage reports
+          command: codecov
       - add_ssh_keys:
           fingerprints:
             - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
