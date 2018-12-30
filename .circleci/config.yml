@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/samplelitelement
+    docker:
+      - image: circleci/node:8.10.0
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/samplelitelement
+          paths:
+            - node_modules
+      - add_ssh_keys:
+          fingerprints:
+            - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
+      - deploy:
+          name: Deploy to gh-pages
+          command: ./deploy.sh
