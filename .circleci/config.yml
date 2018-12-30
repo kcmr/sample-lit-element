@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/samplelitelement
     docker:
-      - image: circleci/node:8.10.0-browsers
+      - image: circleci/node:8-browsers-legacy
       - browsers:
     environment:
       - SOURCE_BRANCH: master
