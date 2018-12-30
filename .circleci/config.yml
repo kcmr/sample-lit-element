@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    branches:
+      ignore:
+        - gh-pages
     docker:
       - image: circleci/node:8.10.0
     environment:
@@ -21,7 +24,7 @@ jobs:
               git clone $CIRCLE_REPOSITORY_URL out
 
               cd out
-              git checkout $SOURCE_BRANCH || git checkout --orphan $TARGET_BRANCH
+              git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
               git rm -rf .
               cd ..
 
