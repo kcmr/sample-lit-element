@@ -4,7 +4,6 @@ jobs:
     working_directory: ~/samplelitelement
     docker:
       - image: circleci/node:8-jessie-browsers
-      - browsers:
     environment:
       - SOURCE_BRANCH: master
       - TARGET_BRANCH: gh-pages
