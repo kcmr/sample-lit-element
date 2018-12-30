@@ -49,7 +49,7 @@ export class SampleLitElement extends LitElement {
   }
 
   render() {
-    return html `
+    return html`
       <style>
         :host {
           display: block;
@@ -141,7 +141,7 @@ export class SampleLitElement extends LitElement {
         }
 
         .link {
-          color: #E91E63; 
+          color: #E91E63;
         }
 
         .btn {
