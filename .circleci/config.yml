@@ -3,25 +3,36 @@ jobs:
   build:
     working_directory: ~/samplelitelement
     docker:
-      - image: circleci/node:8.10.0
+      - image: circleci/node:8-jessie-browsers
     environment:
       - SOURCE_BRANCH: master
       - TARGET_BRANCH: gh-pages
     steps:
+      - attach_workspace:
+          at: ~/samplelitelement
       - checkout
       - restore_cache:
           key: node-v1-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: npm install
+      - run:
+          name: Install Codecov
+          command: sudo npm install -g codecov
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
       - persist_to_workspace:
-          root: ~/samplelitelement
+          root: .
           paths:
             - node_modules
+      - run:
+          name: Test
+          command: npm test
+      - run:
+          name: Upload coverage
+          command: codecov
       - add_ssh_keys:
           fingerprints:
             - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
