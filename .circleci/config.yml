@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy:
+  build:
     working_directory: publish
     docker:
       - image: circleci/node:8.10.0
