@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@kuscamara/sample-lit-element": "^1.0.2",
-    "@webcomponents/webcomponentsjs": "latest"
+    "@webcomponents/webcomponentsjs": "latest",
+    "polymer-cli": "^1.9.4"
   }
 }
