@@ -37,7 +37,6 @@ export class SampleLitElement extends LitElement {
     this.vip = false;
     this.cats = [];
     this.phoneVisibilityDuration = 5000;
-    this.theme = 'default';
     this._btnPhoneClicked = false;
   }
 
