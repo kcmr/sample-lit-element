@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>sample-lit-element demo</title>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../sample-lit-element.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      sample-lit-element {
+        width: 300px;
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <sample-lit-element
+      vip
+      name="Firstname Lastname"
+      email="firstname@email.com"
+      avatar="https://api.adorable.io/avatars/120/random-0.png"
+      phone="666 666 666"
+      phone-visibility-duration="1000">
+    </sample-lit-element>
+
+    <script>
+      {
+        const sample = document.querySelector('sample-lit-element');
+        sample.cats = ['Pepe', 'Pepa', 'Lolo'];
+
+        document.addEventListener('phone-shown', (event) => {
+          console.log(event.detail);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "sample-lit-element",
+  "main": "sample-lit-element.js",
+  "dependencies": {
+    "@polymer/lit-element": "latest"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "latest"
+  }
+}
