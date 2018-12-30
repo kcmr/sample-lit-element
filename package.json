@@ -1,11 +1,17 @@
 {
-  "name": "sample-lit-element",
+  "name": "@kuscamara/sample-lit-element",
   "main": "sample-lit-element.js",
   "version": "1.0.0",
+  "description": "Sample Lit Element",
   "dependencies": {
     "@polymer/lit-element": "latest"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "latest"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kcmr/sample-lit-element.git"
+  },
+  "homepage": "https://github.com/kcmr/sample-lit-element/"
 }
