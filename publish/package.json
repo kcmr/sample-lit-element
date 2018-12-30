@@ -13,5 +13,8 @@
     "@kuscamara/sample-lit-element": "^1.0.2",
     "@webcomponents/webcomponentsjs": "latest",
     "polymer-cli": "^1.9.4"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/polymer build"
   }
 }

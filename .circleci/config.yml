@@ -14,4 +14,4 @@ jobs:
           command: npm install
       - run:
           name: Polymer build
-          command: polymer build
+          command: npm run build
