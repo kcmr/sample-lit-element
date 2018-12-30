@@ -10,7 +10,7 @@ jobs:
           command: 'cd publish'
       - run:
           name: Install Polymer globally
-          command: 'sudo npm install -g polymer@1.9.4'
+          command: 'sudo npm install -g polymer-cli@1.9.4'
       - run:
           name: Install dependencies
           command: npm install
