@@ -40,6 +40,14 @@ export class SampleLitElement extends LitElement {
     this._btnPhoneClicked = false;
   }
 
+  firstUpdated() {
+    this.addEventListener('custom', this._onCustomEvent);
+  }
+
+  _onCustomEvent(event) {
+    console.log('custom event fired from Light DOM', event);
+  }
+
   render() {
     return html `
       <style>
@@ -154,6 +162,10 @@ export class SampleLitElement extends LitElement {
             ${this.cats.map(item => html`<li>${item}</li>`)}
           </ul>
         </div>
+
+        <slot>
+          your content here...
+        </slot>
 
         <button class="btn" @click="${this._showPhone}" ?disabled="${this._btnPhoneClicked}">Show phone</button>
 
