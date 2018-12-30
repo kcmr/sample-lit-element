@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/kcmr/sample-lit-element/",
   "scripts": {
-    "build": "cd publish && npm i && npm run build"
+    "build": "cp sample-lit-element.js publish/sample-lit-element.js && cd publish && npm i && npm run build"
   }
 }

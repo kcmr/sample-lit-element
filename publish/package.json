@@ -4,17 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/polymer build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@kuscamara/sample-lit-element": "^1.0.2",
+    "@polymer/lit-element": "latest",
     "@webcomponents/webcomponentsjs": "latest",
     "polymer-cli": "^1.9.4"
-  },
-  "scripts": {
-    "build": "./node_modules/.bin/polymer build"
   }
 }

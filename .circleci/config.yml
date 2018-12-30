@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/idontknowwhatiamdoing
     docker:
       - image: circleci/node:8.10.0
     steps:
