@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  deploy:
+    working_directory: publish
+    docker:
+      - image: circleci/node:8.10.0
+    steps:
+      - checkout
+      - run:
+          name: Install Polymer globally
+          command: 'sudo npm install -g polymer@1.9.4'
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Polymer build
+          command: polymer build
