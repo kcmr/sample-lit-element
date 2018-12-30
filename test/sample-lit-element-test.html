@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../sample-lit-element.js"></script>
+  </head>
+  <body>
+    <test-fixture id="default">
+      <template>
+        <sample-lit-element></sample-lit-element>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      suite('<sample-lit-element>', () => {
+        let el;
+
+        function isVisible(elem) {
+          return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
+        }
+
+        setup(() => {
+          el = fixture('default');
+        });
+
+        test('Setting "avatar" displays an image', async () => {
+          el.avatar = 'data:image/gif;base64,ok';
+
+          await el.updateComplete;
+          const $image = el.shadowRoot.querySelector('img');
+
+          assert.equal($image.src, el.avatar);
+        });
+
+        test('Setting "name" displays the name', async () => {
+          el.name = 'John';
+
+          await el.updateComplete;
+          const $name = el.shadowRoot.querySelector('.user-name');
+
+          assert.equal($name.innerText, el.name);
+        });
+
+        test('Setting "email" displays a link with the email (mailto)', async () => {
+          el.email = 'john@email.com';
+
+          await el.updateComplete;
+          const $emailLink = el.shadowRoot.querySelector('.email');
+
+          assert.equal($emailLink.innerText, el.email);
+          assert.equal($emailLink.href, `mailto:${el.email}`);
+        });
+
+        test('Setting "cats" displays the list of user cats', (done) => {
+          el.cats = ['Miau', 'Meow', 'Meee'];
+
+          flush(() => {
+            const $catListItems = el.shadowRoot.querySelectorAll('li');
+
+            $catListItems.forEach((listItem, index) => {
+              assert.equal(listItem.innerText, el.cats[index]);
+            });
+
+            done();
+          });
+        });
+
+        test('VIP badge is hidden by default', async () => {
+          await el.updateComplete;
+          const $vipBadge = el.shadowRoot.querySelector('.badge');
+          assert.isTrue($vipBadge.hidden);
+        });
+
+        test('Setting "vip" to true displays a "VIP" badge', async () => {
+          el.vip = true;
+
+          await el.updateComplete;
+          const $vipBadge = el.shadowRoot.querySelector('.badge');
+
+          assert.isFalse($vipBadge.hidden);
+        });
+
+        test('Phone number is not shown by default', async () => {
+          await el.updateComplete;
+          const $phone = el.shadowRoot.querySelector('.phone');
+          assert.isNull($phone, 'phone is not rendered');
+        });
+
+        suite('"Show phone" button', () => {
+          let $button;
+
+          setup(async () => {
+            await el.updateComplete;
+            $button = el.shadowRoot.querySelector('button');
+          });
+
+          test('Clicking "show phone" disables the button', (done) => {
+            $button.click();
+
+            flush(() => {
+              assert.isTrue($button.disabled);
+              done();
+            });
+          });
+
+          test('Clicking "show phone" button displays the user phone', (done) => {
+            el.phone = '666 666 666';
+            $button.click();
+
+            flush(() => {
+              const $phone = el.shadowRoot.querySelector('.phone');
+              assert.isTrue(isVisible($phone));
+              assert.equal($phone.innerText, el.phone);
+              done();
+            });
+          });
+
+          // Arrange, Act y Assert no están en el orden habitual
+          test('Clicking "show phone" fires "phone-shown" event with the phone number as payload', () => {
+            // arrange
+            el.phone = '123 123 123';
+
+            el.addEventListener('phone-shown', (event) => {
+              // assert
+              assert.equal(event.detail, el.phone, 'event.detail contains the phone number');
+            });
+
+            // act
+            $button.click();
+          });
+
+          test('Phone number is visible during the specified time in "phoneVisibilityDuration" after clicking "show phone" button', (done) => {
+            const timeoutStub = sinon.stub(window, 'setTimeout', function(cb) {
+              cb.call(el);
+            });
+
+            el.phoneVisibilityDuration = 2000;
+            $button.click();
+
+            assert.strictEqual(
+              timeoutStub.getCall(0).args[1], el.phoneVisibilityDuration,
+              'timeout duration is equal than "phoneVisibilityDuration"'
+            );
+
+            flush(() => {
+              const $phone = el.shadowRoot.querySelector('.phone');
+              assert.isFalse(isVisible($phone));
+              timeoutStub.restore();
+              done();
+            });
+          });
+        });
+
+
+      });
+    </script>
+  </body>
+</html>

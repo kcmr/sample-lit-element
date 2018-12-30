@@ -8,7 +8,10 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "latest",
-    "polymer-cli": "^1.9.4"
+    "polymer-cli": "^1.9.4",
+    "wct-browser-legacy": "^1.0.1",
+    "wct-istanbul": "~0.14.3",
+    "web-component-tester": "^6.7.1"
   },
   "repository": {
     "type": "git",
@@ -16,6 +19,7 @@
   },
   "homepage": "https://github.com/kcmr/sample-lit-element/",
   "scripts": {
-    "build": "./node_modules/.bin/polymer build"
+    "build": "./node_modules/.bin/polymer build",
+    "test": "wct --module-resolution=node --npm"
   }
 }
