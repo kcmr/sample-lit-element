@@ -13,5 +13,8 @@
     "type": "git",
     "url": "git://github.com/kcmr/sample-lit-element.git"
   },
-  "homepage": "https://github.com/kcmr/sample-lit-element/"
+  "homepage": "https://github.com/kcmr/sample-lit-element/",
+  "scripts": {
+    "build": "cd publish && npm i && npm run build"
+  }
 }
