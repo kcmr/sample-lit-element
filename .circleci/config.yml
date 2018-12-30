@@ -38,6 +38,6 @@ jobs:
               cd out
 
               git add -A
-              git commit -m 'deploy to Github Pages' --allow-empty
+              git commit -m '[ci skip] deploy to Github Pages' --allow-empty
               git push origin $TARGET_BRANCH
             fi
