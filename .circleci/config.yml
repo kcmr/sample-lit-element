@@ -8,9 +8,17 @@ jobs:
       - TARGET_BRANCH: gh-pages
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: Install dependencies
           command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}
       - add_ssh_keys:
           fingerprints:
             - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
