@@ -18,7 +18,7 @@ jobs:
           command: npm install
       - run:
           name: Install Codecov
-          command: npm install -g codecov
+          command: sudo npm install -g codecov
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}
           paths:
