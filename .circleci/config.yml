@@ -16,7 +16,7 @@ jobs:
           command: npm install
       - add_ssh_keys:
           fingerprints:
-            - "5b:29:d0:da:98:13:bf:f6:d8:6e:cd:89:89:53:f0:94"
+            - "3f:45:b7:39:cc:61:c2:c5:f9:d7:c5:fe:17:df:b9:a0"
       - deploy:
           name: Deploy to gh-pages
           command: |
