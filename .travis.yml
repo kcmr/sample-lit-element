@@ -14,10 +14,10 @@ cache: npm
 script:
   - npm test
   - codecov
+  - npm run build
 
 deploy:
   - provider: pages
-    script: npm run build
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     local-dir: "build/es6-bundled/demo"
