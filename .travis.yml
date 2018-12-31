@@ -20,4 +20,4 @@ deploy:
   github-token: $GITHUB_TOKEN
   local-dir: "build/es6-bundled/demo"
   on:
-    branch: master
+    branch: travis
