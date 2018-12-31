@@ -129,7 +129,7 @@
             $button.click();
           });
 
-          test.skip('Phone number is visible during the specified time in "phoneVisibilityDuration" after clicking "show phone" button', (done) => {
+          test('Phone number is visible during the specified time in "phoneVisibilityDuration" after clicking "show phone" button', (done) => {
             const timeoutStub = sinon.stub(window, 'setTimeout', function(cb) {
               cb.call(el);
             });
