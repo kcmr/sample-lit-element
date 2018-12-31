@@ -13,9 +13,6 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
-      - run:
-          name: Install Codecov
-          command: sudo npm install -g codecov
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}
           paths: node_modules
@@ -30,6 +27,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/samplelitelement
+      - run: npm install
+      - run: sudo npm install -g codecov
       - run:
           name: Test
           command: npm test
@@ -47,6 +46,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/samplelitelement
+      - run: npm install
       - add_ssh_keys:
           fingerprints:
             - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
