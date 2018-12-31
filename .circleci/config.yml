@@ -48,12 +48,11 @@ jobs:
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
               git rm -rf .
-              mkdir $CIRCLE_BRANCH
               cd ..
 
               npm run build
 
-              cp -a build/es6-bundled/demo/. out/$CIRCLE_BRANCH/.
+              cp -a build/es6-bundled/demo/. out/.
 
               cd out
 
