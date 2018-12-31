@@ -118,17 +118,14 @@
             });
           });
 
-          // Arrange, Act y Assert no están en el orden habitual
-          test('Clicking "show phone" fires "phone-shown" event with the phone number as payload', () => {
-            // arrange
+          test('Clicking "show phone" fires "phone-shown" event with the phone number as payload', (done) => {
             el.phone = '123 123 123';
 
             el.addEventListener('phone-shown', (event) => {
-              // assert
               assert.equal(event.detail, el.phone, 'event.detail contains the phone number');
+              done();
             });
 
-            // act
             $button.click();
           });
 
@@ -153,8 +150,6 @@
             });
           });
         });
-
-
       });
     </script>
   </body>
