@@ -59,4 +59,6 @@ workflows:
   test_and_deploy:
     jobs:
       - checkout_repo
-      - test_and_report
+      - test_and_report:
+          requires:
+            - checkout_repo
