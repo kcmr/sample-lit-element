@@ -21,5 +21,8 @@
   "scripts": {
     "build": "./node_modules/.bin/polymer build",
     "test": "wct --module-resolution=node --npm"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -12,16 +12,22 @@ install:
 cache: npm
 
 script:
-  - xvfb-run npm test
+  - npm test
   - codecov
 
 before_deploy:
   - npm run build
 
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  local-dir: "build/es6-bundled/demo"
-  on:
-    branch: master
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    local-dir: "build/es6-bundled/demo"
+    on:
+      tags: true
+
+  - provider: npm
+    email: $NPM_EMAIL
+    api_key: $NPM_AUTH_TOKEN
+    on:
+      tags: true
