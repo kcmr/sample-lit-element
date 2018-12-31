@@ -1,2 +1,7 @@
 build/
 demo/
+test/
+.*
+*.html
+*.json
+wct-conf.js
