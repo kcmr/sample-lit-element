@@ -9,9 +9,13 @@ install:
   - npm install
   - npm install -g codecov
 
+cache: npm
+
 script:
   - npm test
   - codecov
+
+before_deploy:
   - npm run build
 
 deploy:
