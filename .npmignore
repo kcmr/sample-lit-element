@@ -4,4 +4,4 @@ test/
 .*
 *.html
 *.json
-wct-conf.js
+wct.conf.js
