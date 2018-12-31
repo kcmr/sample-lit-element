@@ -1,51 +1,72 @@
 version: 2
 jobs:
-  build:
+  checkout_repo:
     working_directory: ~/samplelitelement
-
     docker:
       - image: circleci/node:8-jessie-browsers
-
-    environment:
-      - SOURCE_BRANCH: master
-      - TARGET_BRANCH: gh-pages
-
     steps:
+      - checkout
       - attach_workspace:
           at: ~/samplelitelement
-
-      - checkout
-
       - restore_cache:
           key: node-v1-{{ checksum "package.json" }}
-
       - run:
           name: Install dependencies
           command: npm install
-
-      - run:
-          name: Install Codecov
-          command: sudo npm install -g codecov
-
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}
           paths: node_modules
-
       - persist_to_workspace:
           root: .
           paths: .
 
+  test_and_report:
+    working_directory: ~/samplelitelement
+    docker:
+      - image: circleci/node:8-jessie-browsers
+    steps:
+      - attach_workspace:
+          at: ~/samplelitelement
+      - run: npm install
+      - run: sudo npm install -g codecov
       - run:
           name: Test
           command: npm test
-
       - run:
           name: Upload coverage
           command: codecov
 
+  build_and_deploy:
+    working_directory: ~/samplelitelement
+    docker:
+      - image: circleci/node:8-jessie-browsers
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+    steps:
+      - attach_workspace:
+          at: ~/samplelitelement
+      - run: npm install
       - add_ssh_keys:
-          fingerprints: "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
-
+          fingerprints:
+            - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - deploy:
           name: Deploy to gh-pages
           command: bash scripts/./deploy.sh
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - checkout_repo
+      - test_and_report:
+          requires:
+            - checkout_repo
+      - build_and_deploy:
+          requires:
+            - test_and_report
+          filters:
+            branches:
+              only:
+                - master
