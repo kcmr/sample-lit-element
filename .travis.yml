@@ -15,11 +15,9 @@ script:
   - npm test
   - codecov
 
-before_deploy:
-  - npm run build
-
 deploy:
   - provider: pages
+    script: npm run build
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     local-dir: "build/es6-bundled/demo"
