@@ -1,6 +1,6 @@
 # \<sample-lit-element\>
 
-[![CircleCI](https://circleci.com/gh/kcmr/sample-lit-element.svg?style=svg)](https://circleci.com/gh/kcmr/sample-lit-element)
+[![Build Status](https://travis-ci.org/kcmr/sample-lit-element.svg?branch=master)](https://travis-ci.org/kcmr/sample-lit-element)
 [![codecov](https://codecov.io/gh/kcmr/sample-lit-element/branch/master/graph/badge.svg)](https://codecov.io/gh/kcmr/sample-lit-element)
 
 ## Install the Polymer-CLI
