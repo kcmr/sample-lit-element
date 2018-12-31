@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ "${CIRCLE_BRANCH}" == "master" ]; then
+if [ "${CIRCLE_BRANCH}" == "${SOURCE_BRANCH}" ]; then
   git config --global user.email "${GH_EMAIL}"
   git config --global user.name "${GH_NAME}"
 
