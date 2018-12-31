@@ -18,5 +18,5 @@ if [ "${CIRCLE_BRANCH}" == "${SOURCE_BRANCH}" ]; then
 
   git add -A
   git commit -m '[ci skip] deploy to Github Pages' --allow-empty
-  git push origin "${TARGET_BRANCH}"
+  git push --force origin "${TARGET_BRANCH}"
 fi
