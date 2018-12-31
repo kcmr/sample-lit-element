@@ -1,7 +1,7 @@
 {
   "name": "@kuscamara/sample-lit-element",
   "main": "sample-lit-element.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Sample Lit Element",
   "dependencies": {
     "@polymer/lit-element": "latest"
