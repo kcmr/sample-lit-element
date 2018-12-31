@@ -6,6 +6,9 @@ jobs:
       - image: circleci/node:8-jessie-browsers
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "d4:b0:fd:6b:48:44:97:d2:34:82:c5:f2:c0:74:03:66"
       - attach_workspace:
           at: ~/samplelitelement
       - restore_cache:
@@ -47,9 +50,6 @@ jobs:
       - attach_workspace:
           at: ~/samplelitelement
       - run: npm install
-      - add_ssh_keys:
-          fingerprints:
-            - "5b:29:d0:da:98:13:bf:f6:d8:6e:cd:89:89:53:f0:94"
       - deploy:
           name: Deploy to gh-pages
           command: |
@@ -85,6 +85,7 @@ workflows:
             - checkout_repo
       - build_and_deploy:
           requires:
+            - checkout_repo
             - test_and_report
           filters:
             branches:
