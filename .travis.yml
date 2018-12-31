@@ -12,7 +12,7 @@ install:
 cache: npm
 
 script:
-  - npm test
+  - xvfb-run npm test
   - codecov
 
 before_deploy:
