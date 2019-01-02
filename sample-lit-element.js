@@ -96,7 +96,12 @@ export class SampleLitElement extends LitElement {
         }
 
         .cats {
+          width: 100%;
           margin-top: 24px;
+        }
+
+        .cats .secondary-heading {
+          text-align: center;
         }
 
         .cat-list {
