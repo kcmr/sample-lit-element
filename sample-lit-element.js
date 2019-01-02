@@ -92,7 +92,7 @@ export class SampleLitElement extends LitElement {
 
         .avatar {
           flex: none;
-          border-radius: 50%;
+          border-radius: var(--sample-lit-element-avatar-border-radius, 4px);
         }
 
         .cats {
