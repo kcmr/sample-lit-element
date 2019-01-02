@@ -92,11 +92,16 @@ export class SampleLitElement extends LitElement {
 
         .avatar {
           flex: none;
-          border-radius: 50%;
+          border-radius: var(--sample-lit-element-avatar-border-radius, 4px);
         }
 
         .cats {
+          width: 100%;
           margin-top: 24px;
+        }
+
+        .cats .secondary-heading {
+          text-align: center;
         }
 
         .cat-list {
@@ -163,9 +168,7 @@ export class SampleLitElement extends LitElement {
           </ul>
         </div>
 
-        <slot>
-          your content here...
-        </slot>
+        <slot></slot>
 
         <button class="btn" @click="${this._showPhone}" ?disabled="${this._btnPhoneClicked}">Show phone</button>
 
