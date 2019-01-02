@@ -168,9 +168,7 @@ export class SampleLitElement extends LitElement {
           </ul>
         </div>
 
-        <slot>
-          your content here...
-        </slot>
+        <slot></slot>
 
         <button class="btn" @click="${this._showPhone}" ?disabled="${this._btnPhoneClicked}">Show phone</button>
 
